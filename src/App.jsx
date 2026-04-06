@@ -1,12 +1,14 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-// import "./App.css";
+import Navbar from "./components/Navbar";
+import AllRoute from "./route/AllRoute";
+import appStore from "./redux/appStore";
+import { Provider } from "react-redux";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl text-red-500">DevTinder</h1>
+      <Provider store={appStore}>
+        <AllRoute />
+      </Provider>
     </>
   );
 }
