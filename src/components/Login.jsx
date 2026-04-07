@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/user";
+import { useNavigate } from "react-router";
+import { Navigate } from "react-router";
 
 const Login = () => {
   const [email, setEmail] = useState("ajmat@gmail.com");
   const [password, setPassword] = useState("Ajmat@12345");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -25,14 +28,20 @@ const Login = () => {
         },
         withCredentials: true,
       });
-      dispatch(addUser(res.data));
+      dispatch(addUser({ user: res.data, loading: false, error: false }));
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  const { user } = useSelector((store) => store.user);
+  if (user) {
+    return <Navigate to="/" />;
+  }
+
   return (
-    <div className="flex justify-center border border-red-200 mt-6 p-2">
+    <div className="flex justify-center  mt-6 p-2">
       <fieldset className="fieldset bg-base-300 border-base-300 rounded-box w-xs border p-4 ">
         <h2 className="text-xl text-center">Login</h2>
 
