@@ -11,6 +11,9 @@ const userSlice = createSlice({
     addUser: (state, action) => {
       return action.payload;
     },
+    // updateUser: (state, action) => {
+    //   state.user = { ...state.user, ...action.payload };
+    // },
     removeUser: (state, action) => {
       state.user = null;
       state.loading = false;
