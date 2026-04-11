@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import Feed from "../components/Feed";
 import UserConnection from "../components/UserConnection";
 import UserRequest from "../components/UserRequest";
+import SignUp from "../components/SignUp";
 
 const AllRoute = ({ children }) => {
   return (
@@ -13,6 +14,7 @@ const AllRoute = ({ children }) => {
       <Routes>
         <Route path="/" element={<Body />}>
           <Route path="/" element={<Feed />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/UserConnection" element={<UserConnection />} />

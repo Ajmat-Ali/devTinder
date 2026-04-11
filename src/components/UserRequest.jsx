@@ -26,9 +26,7 @@ const UserRequest = () => {
   };
 
   useEffect(() => {
-    if (!requests) {
-      getpendingRequest();
-    }
+    getpendingRequest();
   }, []);
 
   const handleRequest = async (status, _id) => {
@@ -48,6 +46,7 @@ const UserRequest = () => {
 
   if (loading) return <h1>Loading in request....</h1>;
   if (error) return <h1>Error in request....</h1>;
+  if (!requests) return null;
 
   if (requests.length <= 0)
     return (

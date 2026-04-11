@@ -35,7 +35,7 @@ const Navbar = () => {
         </Link>
       </div>
       {user && (
-        <div className="flex gap-2 border- border-green-400-">
+        <div className="flex gap-2 ">
           {/* {console.log(user.photoUrl)} */}
           <div className="dropdown dropdown-end">
             <div

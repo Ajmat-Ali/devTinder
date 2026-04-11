@@ -54,13 +54,17 @@ const EditProfile = ({ toggleEditing: { setIsEditing } }) => {
   };
 
   const handleSaveProfile = async () => {
+    let newSkills = skills;
+    if (skills.length > 0) {
+      newSkills = profileForm.skills.split(" ").filter(Boolean);
+    }
     const data = {
       firstName,
       lastName,
       age,
       gender,
       bio,
-      skills: profileForm.skills.split(" ").filter(Boolean),
+      skills: newSkills,
     };
 
     if (photoUrl) {
@@ -88,12 +92,12 @@ const EditProfile = ({ toggleEditing: { setIsEditing } }) => {
     }
   };
 
-  if (errorToUpdateProfile)
-    return (
-      <h1 className="text-center mt-10 text-red-500 font-bold">
-        {errorToUpdateProfile}
-      </h1>
-    );
+  // if (errorToUpdateProfile)
+  //   return (
+  //     <h1 className="text-center mt-10 text-red-500 font-bold">
+  //       {errorToUpdateProfile}
+  //     </h1>
+  //   );
 
   return (
     <div className="card bg-primary-content/10 w-96 shadow-sm">
@@ -144,7 +148,7 @@ const EditProfile = ({ toggleEditing: { setIsEditing } }) => {
               className="input py-5 rounded-lg"
               placeholder="age"
               name="age"
-              value={age}
+              value={age ? age : ""}
               onChange={handleChangeForm}
             />
             {/* <p className="label">Optional</p> */}
@@ -195,7 +199,7 @@ const EditProfile = ({ toggleEditing: { setIsEditing } }) => {
                 pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                 title="Must be valid URL"
                 name="photoUrl"
-                value={photoUrl}
+                value={photoUrl ? photoUrl : ""}
                 onChange={handleChangeForm}
               />
             </label>
@@ -230,6 +234,9 @@ const EditProfile = ({ toggleEditing: { setIsEditing } }) => {
             {/* <div className="label">Optional</div> */}
           </fieldset>
         </div>
+        {errorToUpdateProfile && (
+          <div className="text-center text-red-400">{errorToUpdateProfile}</div>
+        )}
 
         <div className="m-2 space-y-2">
           <button

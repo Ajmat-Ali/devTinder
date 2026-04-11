@@ -41,7 +41,7 @@ const Body = () => {
   }, []);
 
   if (loading) return <h1>Loading ...</h1>;
-  if (error) return <h1>Something went wrong</h1>;
+  if (error) return <h1>Something went wrong Body</h1>;
 
   return (
     <div>

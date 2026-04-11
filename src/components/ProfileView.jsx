@@ -53,7 +53,7 @@ const ProfileView = ({ toggleEditing: { isEditing, setIsEditing } }) => {
           </div>
           <div className=" flex flex-col">
             <span className="text-gray-400 text-xsm">Skills</span>
-            <span className="text-sm">{skills.join(",")}</span>
+            <span className="text-sm">{skills.join(", ")}</span>
           </div>
         </div>
       </div>

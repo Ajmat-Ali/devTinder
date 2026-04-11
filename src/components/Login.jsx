@@ -3,7 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/user";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Navigate } from "react-router";
 
 const Login = () => {
@@ -12,6 +12,8 @@ const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const handleTogglePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -29,9 +31,9 @@ const Login = () => {
         withCredentials: true,
       });
       dispatch(addUser({ user: res.data, loading: false, error: false }));
-      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      const err = error?.response?.data || "Something went wrong";
+      setError(err);
     }
   };
 
@@ -41,7 +43,7 @@ const Login = () => {
   }
 
   return (
-    <div className="flex justify-center  mt-6 p-2">
+    <div className="flex  justify-center  mt-6 p-2">
       <fieldset className="fieldset bg-base-300 border-base-300 rounded-box w-xs border p-4 ">
         <h2 className="text-xl text-center">Login</h2>
 
@@ -54,9 +56,9 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <label className="label mt-3">Password</label>
-        <div className="relative ">
+        <div className="relative">
           <input
-            type={isPasswordVisible ? "value" : "password"}
+            type={isPasswordVisible ? "text" : "password"}
             className="input "
             placeholder="Password"
             value={password}
@@ -73,7 +75,20 @@ const Login = () => {
         <button className="btn btn-neutral mt-4" onClick={handleLogin}>
           Login
         </button>
+        <div className="mt-2 text-center text-red-400">
+          <p>{error && error}</p>
+        </div>
+        <p className="text-center">
+          <Link to="/signup">Don't have account? Register here!</Link>
+        </p>
       </fieldset>
+      {showToast && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-success">
+            <span>Login successful.</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
