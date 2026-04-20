@@ -23,7 +23,7 @@ const Navbar = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error?.Response?.data);
     }
   };
 

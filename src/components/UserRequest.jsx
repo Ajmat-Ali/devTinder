@@ -20,7 +20,7 @@ const UserRequest = () => {
         addRequests({ requests: res.data.data, loading: false, error: false }),
       );
     } catch (error) {
-      console.log(error);
+      console.log(error?.response?.data);
       dispatch(addRequests({ requests: null, loading: false, error: true }));
     }
   };
@@ -40,7 +40,7 @@ const UserRequest = () => {
 
       dispatch(removeRequest({ _id }));
     } catch (error) {
-      console.log(error);
+      console.log(error?.response?.data);
     }
   };
 

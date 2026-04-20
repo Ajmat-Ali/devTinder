@@ -13,9 +13,9 @@ const AllRoute = ({ children }) => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Body />}>
-          <Route path="/" element={<Feed />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Feed />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/UserConnection" element={<UserConnection />} />
           <Route path="/UserRequest" element={<UserRequest />} />

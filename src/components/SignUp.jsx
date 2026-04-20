@@ -56,7 +56,7 @@ const SignUp = () => {
   if (loading) return <h1 className="text-center text-xl m-3">Loading...</h1>;
 
   return (
-    <div>
+    <div className="  flex justify-center mt-10 mb-20">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
         <h2 className="text-center text-xl">Sign Up</h2>
 
